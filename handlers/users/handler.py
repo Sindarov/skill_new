@@ -6,7 +6,7 @@ from loader import dp,db,bot
 @dp.message_handler(text='👤 Ma\'lumotlar')
 async def balans(message: types.Message):
     balans = db.select_user(message.from_user.id)
-    text = f"Sizning ballgiz: {balans[0][4]} \n"
+    text = f"Sizning ballingiz: {balans[0][4]} \n"
     text += f"Sizning id <code>{message.from_user.id}</code>\n"
     text += f"👥<b>Taklif qilgan do'stlaringiz:</b> <code>{len(db.get_invited(referral=message.from_user.id))}</code> odam\n"
     text += f"📱<b>Hisob raqamingiz:</b> {balans[0][5]}"
