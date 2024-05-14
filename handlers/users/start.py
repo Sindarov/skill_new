@@ -137,8 +137,8 @@ Aynan shu bo’limdan olgan linkingizni posti bilan tarqatishingiz shart‼️
             number='none',
             ball='0'
         )
-        await message.answer(text="Telefon raqamingizni yuboring.\n\n❗️Raqamni yuborish uchun pastdagi <b>«Raqamni yuborish 📞»</b> tugmasini bosing👇",reply_markup=numbers)
-        await Number.Add.set()
+        # await message.answer(text="Telefon raqamingizni yuboring.\n\n❗️Raqamni yuborish uchun pastdagi <b>«Raqamni yuborish 📞»</b> tugmasini bosing👇",reply_markup=numbers)
+        # await Number.Add.set
 
         user = db.count_users()
         matn = f"🎉 Yangi foydalanuvchi. {message.from_user.get_mention()}\n"\
@@ -147,15 +147,6 @@ Aynan shu bo’limdan olgan linkingizni posti bilan tarqatishingiz shart‼️
                 f"📝 Fullname: {message.from_user.full_name}\n\n" \
                 f"📊 Bazada {user[0]} ta foydalanuvchi mavjud."
         await bot.send_message(chat_id=ADMINS[0], text=matn)
-
-@dp.message_handler(state=Number.Add ,content_types=['contact'])
-async def number(message: types.Message, state:FSMContext):
-    if message.contact.phone_number.startswith("+998") or message.contact.phone_number.startswith("998"):
-        raqam = message.contact.phone_number
-        await state.update_data({'Raqam':raqam})
-        royxat = await state.get_data()
-        Raqam = royxat.get('Raqam')
-        db.update_number(number=f"{Raqam}", user_id=message.from_user.id)
         await message.answer(text=f"""✅ {message.from_user.full_name}  siz tanlovda ishtirok etish uchun muvaffaqiyatli ro’yxatdan o’tdingiz!
 
 🛍 Tanlovga qanday sovg’alar qo’yilganini “Sovg’alar” bo’limidan ko’ramiz.
@@ -168,9 +159,4 @@ async def number(message: types.Message, state:FSMContext):
 
 Aynan shu bo’limdan olgan linkingizni posti bilan tarqatishingiz shart‼️
 """, reply_markup=menu)
-        await state.finish()
-    else:
-        await message.answer(text="Kechirasiz tanlovda uzbek raqamlardan foydalanish kerak.")
-        await state.finish()
-
         
