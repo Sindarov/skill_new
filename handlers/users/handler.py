@@ -12,14 +12,16 @@ async def balans(message: types.Message):
     text += f"📱<b>Hisob raqamingiz:</b> {balans[0][5]}"
     await bot.send_message(message.from_user.id,text=text)
 
-@dp.message_handler(text='📢 Konkursda ishtirok etish ☑️')
+@dp.message_handler(text='📢 Tanlovda ishtirok etish ☑️')
 async def Money(message: types.Message):
     user_id = message.from_user.id
     link = await get_start_link(user_id)
     bot_get = await bot.get_me()
-    await message.answer(f"<b>🎈 <a href='tg://user?id={message.from_user.id}'>{message.from_user.first_name}</a> unikal havola-taklifnomasi.</b>\n\n"
+    await bot.send_message(user_id, f"<b>🎈 <a href='tg://user?id={message.from_user.id}'>{message.from_user.first_name}</a> unikal havola-taklifnomasi.</b>\n\n"
                         f"<b>👇 Boshlash uchun bosing:</b>\n"
-                        f"{link}",reply_markup=types.InlineKeyboardMarkup().add(types.InlineKeyboardButton("Do'stlarga yuborish  📲", switch_inline_query=f"{user_id}")),disable_notification=True)
+                        f"{link}")
+
+
 
 @dp.inline_handler()
 async def referals(inline_query: types.InlineQuery):

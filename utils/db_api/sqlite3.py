@@ -116,6 +116,17 @@ class Database:
     def delete_users(self):
         self.execute("DELETE FROM users WHERE TRUE", commit=True)
 
+    def deduct_balance(self, user_id, amount_spent):
+        # SQL to deduct balance from user's account
+        sql = """
+        UPDATE users SET ball = (ball - ?) WHERE user_id=?
+        """
+        return self.execute(sql, parameters=(amount_spent, user_id), commit=True)
+
+
+    
+    
+    
 ###################################### Kanal vs File ######################################
 
     def add_channel(self, channel: str):

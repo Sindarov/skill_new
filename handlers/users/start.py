@@ -13,18 +13,9 @@ async def bot_start(message: types.Message):
     if db.select_user(user_id=message.from_user.id):
         args = message.get_args()
         if args == 'start':
-            await message.answer(text=f"""✅ {message.from_user.full_name}  siz tanlovda ishtirok etish uchun muvaffaqiyatli ro’yxatdan o’tdingiz!
-
-        🛍 Tanlovga qanday sovg’alar qo’yilganini “Sovg’alar” bo’limidan ko’ramiz.
-
-        🔥Tanlov shartlarini esa “Shartlar” bo’limidan…
-
-        💣 Aktivligingizni “Ma’lumotlar” bo’limidan, natijalarni kuzatib borish uchun “Reyting” bo’limidan foydalanasiz.
-
-        💎 Tanlovda ishtirok etish uchun esa  “Tanlovda ishtirok etish” bo’limini tanlang va referal linkingizni oling, imkon qadar ko’proq tanishlaringizga tarqating va muhim ballarni to’plang.
-
-        Aynan shu bo’limdan olgan linkingizni posti bilan tarqatishingiz shart‼️
-
+            await message.answer(text=f"""✅ {message.from_user.full_name}  siz muvaffaqiyatli ro’yxatdan o’tdingiz!
+                Balance'ingiz ni ko'rishingiz uchun Ma'lumotlar tugmasini bosing !
+                Sovg'angiz ni olish uchun Premium Files tugmasini bosing !
                     """, reply_markup=menu)
         elif args:
             link = db.select_video(args)
@@ -39,19 +30,12 @@ async def bot_start(message: types.Message):
                                                                              switch_inline_query=f"{i[3]}")),
                                               disable_notification=True)
         else:
-            await message.answer(text=f"""✅ {message.from_user.full_name}  siz tanlovda ishtirok etish uchun muvaffaqiyatli ro’yxatdan o’tdingiz!
-
-🛍 Tanlovga qanday sovg’alar qo’yilganini “Sovg’alar” bo’limidan ko’ramiz.
-
-🔥Tanlov shartlarini esa “Shartlar” bo’limidan…
-
-💣 Aktivligingizni “Ma’lumotlar” bo’limidan, natijalarni kuzatib borish uchun “Reyting” bo’limidan foydalanasiz.
-
-💎 Tanlovda ishtirok etish uchun esa  “Tanlovda ishtirok etish” bo’limini tanlang va referal linkingizni oling, imkon qadar ko’proq tanishlaringizga tarqating va muhim ballarni to’plang.
-
-Aynan shu bo’limdan olgan linkingizni posti bilan tarqatishingiz shart‼️
-
-            """, reply_markup=menu)
+            await bot.send_message(message.from_user.id,text=f"""✅ {message.from_user.full_name}  siz muvaffaqiyatli ro’yxatdan o’tdingiz!
+                Balance'ingiz ni ko'rishingiz uchun Ma'lumotlar tugmasini bosing !
+                
+                Sovg'angiz ni olish uchun Premium Files tugmasini bosing !
+                
+                    """, reply_markup=menu)
     else:
         args = message.get_args()
         name = db.select_user(user_id=args)
@@ -67,10 +51,16 @@ Aynan shu bo’limdan olgan linkingizni posti bilan tarqatishingiz shart‼️
                 number='none',
                 ball='0'
             )
-            await message.answer(
-                text="Telefon raqamingizni yuboring.\n\n❗️Raqamni yuborish uchun pastdagi <b>«Raqamni yuborish 📞»</b> tugmasini bosing👇",
-                reply_markup=numbers)
-            await Number.Add.set()
+            await bot.send_message(message.from_user.id, text=f"""✅ {message.from_user.full_name}  siz muvaffaqiyatli ro’yxatdan o’tdingiz!
+                Balance'ingiz ni ko'rishingiz uchun Ma'lumotlar tugmasini bosing !
+                
+                Sovg'angiz ni olish uchun Premium Files tugmasini bosing !
+                
+                    """, reply_markup=menu)
+            # await message.answer(
+            #     text="Telefon raqamingizni yuboring.\n\n❗️Raqamni yuborish uchun pastdagi <b>«Raqamni yuborish 📞»</b> tugmasini bosing👇",
+            #     reply_markup=numbers)
+            # await Number.Add.set()
             db.update_ball(ball='3', user_id=args)
             user = db.count_users()
             matn = f"🎉 Yangi foydalanuvchi. {message.from_user.get_mention()}\n" \
@@ -83,24 +73,16 @@ Aynan shu bo’limdan olgan linkingizni posti bilan tarqatishingiz shart‼️
             print(err)
 
             
-from states.number import Number
+# from states.number import Number
 
 @dp.message_handler(CommandStart())
 async def bot_start(message: types.Message):
     if db.select_user(user_id=message.from_user.id):
         args = message.get_args()
         if args == 'start':
-            await message.answer(text=f"""✅ {message.from_user.full_name}  siz tanlovda ishtirok etish uchun muvaffaqiyatli ro’yxatdan o’tdingiz!
-
-                    🛍 Tanlovga qanday sovg’alar qo’yilganini “Sovg’alar” bo’limidan ko’ramiz.
-
-                    🔥Tanlov shartlarini esa “Shartlar” bo’limidan…
-
-                    💣 Aktivligingizni “Ma’lumotlar” bo’limidan, natijalarni kuzatib borish uchun “Reyting” bo’limidan foydalanasiz.
-
-                    💎 Tanlovda ishtirok etish uchun esa  “Tanlovda ishtirok etish” bo’limini tanlang va referal linkingizni oling, imkon qadar ko’proq tanishlaringizga tarqating va muhim ballarni to’plang.
-
-                    Aynan shu bo’limdan olgan linkingizni posti bilan tarqatishingiz shart‼️
+            await message.answer(text=f"""✅ {message.from_user.full_name}  siz muvaffaqiyatli ro’yxatdan o’tdingiz!
+                Balance'ingiz ni ko'rishingiz uchun Ma'lumotlar tugmasini bosing !
+                Sovg'angiz ni olish uchun Premium Files tugmasini bosing !
                     """, reply_markup=menu)
         elif args:
             print(args)
@@ -117,18 +99,10 @@ async def bot_start(message: types.Message):
                                               disable_notification=True)
 
         else:
-            await message.answer(text=f"""✅ {message.from_user.full_name}  siz tanlovda ishtirok etish uchun muvaffaqiyatli ro’yxatdan o’tdingiz!
-
-🛍 Tanlovga qanday sovg’alar qo’yilganini “Sovg’alar” bo’limidan ko’ramiz.
-
-🔥Tanlov shartlarini esa “Shartlar” bo’limidan…
-
-💣 Aktivligingizni “Ma’lumotlar” bo’limidan, natijalarni kuzatib borish uchun “Reyting” bo’limidan foydalanasiz.
-
-💎 Tanlovda ishtirok etish uchun esa  “Tanlovda ishtirok etish” bo’limini tanlang va referal linkingizni oling, imkon qadar ko’proq tanishlaringizga tarqating va muhim ballarni to’plang.
-
-Aynan shu bo’limdan olgan linkingizni posti bilan tarqatishingiz shart‼️
-""", reply_markup=menu)
+            await bot.send_message(message.from_user.id, text=f"""✅ {message.from_user.full_name}  siz muvaffaqiyatli ro’yxatdan o’tdingiz!
+                Balance'ingiz ni ko'rishingiz uchun Ma'lumotlar tugmasini bosing !
+                Sovg'angiz ni olish uchun Premium Files tugmasini bosing !
+                    """, reply_markup=menu)
     else:
         db.add_user(
             user_id=message.from_user.id,
@@ -147,16 +121,8 @@ Aynan shu bo’limdan olgan linkingizni posti bilan tarqatishingiz shart‼️
                 f"📝 Fullname: {message.from_user.full_name}\n\n" \
                 f"📊 Bazada {user[0]} ta foydalanuvchi mavjud."
         await bot.send_message(chat_id=ADMINS[0], text=matn)
-        await message.answer(text=f"""✅ {message.from_user.full_name}  siz tanlovda ishtirok etish uchun muvaffaqiyatli ro’yxatdan o’tdingiz!
-
-🛍 Tanlovga qanday sovg’alar qo’yilganini “Sovg’alar” bo’limidan ko’ramiz.
-
-🔥Tanlov shartlarini esa “Shartlar” bo’limidan…
-
-💣 Aktivligingizni “Ma’lumotlar” bo’limidan, natijalarni kuzatib borish uchun “Reyting” bo’limidan foydalanasiz.
-
-💎 Tanlovda ishtirok etish uchun esa  “Tanlovda ishtirok etish” bo’limini tanlang va referal linkingizni oling, imkon qadar ko’proq tanishlaringizga tarqating va muhim ballarni to’plang.
-
-Aynan shu bo’limdan olgan linkingizni posti bilan tarqatishingiz shart‼️
-""", reply_markup=menu)
+        await bot.send_message(message.from_user.id,text=f"""✅ {message.from_user.full_name}  siz muvaffaqiyatli ro’yxatdan o’tdingiz!
+                Balance'ingiz ni ko'rishingiz uchun Ma'lumotlar tugmasini bosing !
+                Sovg'angiz ni olish uchun Premium Files tugmasini bosing !
+                    """, reply_markup=menu)
         

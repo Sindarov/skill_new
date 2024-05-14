@@ -7,6 +7,9 @@ menu = ReplyKeyboardMarkup(
         ],
         [
             KeyboardButton(text='👤 Ma\'lumotlar')
+        ],
+        [
+            KeyboardButton(text='🎁Premium Files')
         ]
     ],resize_keyboard=True
 )

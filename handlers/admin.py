@@ -29,7 +29,7 @@ class SuperAdminState(StatesGroup):
 
 @dp.message_handler(commands=['admin','panel'], chat_id = ADMINS[0])
 async def admin_panel(message: types.Message):
-    await message.answer("Admin panelga xush kelibsiz!",reply_markup=panel)
+    await bot.send_message(message.from_user.id, "Admin panelga xush kelibsiz!",reply_markup=panel)
 
 # Admin paneldan chiqish uchun kommanda
 
