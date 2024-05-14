@@ -4,15 +4,9 @@ menu = ReplyKeyboardMarkup(
     keyboard=[
         [
             KeyboardButton(text='📢 Tanlovda ishtirok etish ☑️'),
-            KeyboardButton(text="📔 Darsliklar 📚")
         ],
         [
-            KeyboardButton(text='🎁 Sovg\'alar'),
             KeyboardButton(text='👤 Ma\'lumotlar')
-        ],
-        [
-            KeyboardButton(text='💡 Shartlar'),
-            KeyboardButton(text='📊 Reyting')
         ]
     ],resize_keyboard=True
 )
